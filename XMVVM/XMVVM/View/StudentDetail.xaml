@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XMVVM.View.StudentDetail"
+             Title="StudentDetail">
+    <ScrollView>
+        <StackLayout Padding="10">
+            <Label Text="Student Detail" FontSize="40"/>
+            <Label Text="Nombre"/>
+            <Entry Text="{Binding Name}" IsEnabled="False"/>
+            <Label Text="Apellido"/>
+            <Entry Text="{Binding LastName}" IsEnabled="False"/>
+            <Label Text="Promedio"/>
+            <Entry Text="{Binding Average}" IsEnabled="False"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

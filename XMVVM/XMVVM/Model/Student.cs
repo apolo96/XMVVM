@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace XMVVM.Model
 {
-    class Student
+    public class Student
     {
         private string name;
         private string lastName;

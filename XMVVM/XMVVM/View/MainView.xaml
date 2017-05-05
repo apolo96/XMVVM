@@ -11,7 +11,7 @@
             Color="Blue" 
             IsRunning="{Binding IsBusy}" 
             IsVisible="{Binding IsBusy}"/>
-        <ListView ItemsSource="{Binding Students}">
+        <ListView ItemsSource="{Binding Students}" x:Name="lvStudents">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ImageCell 

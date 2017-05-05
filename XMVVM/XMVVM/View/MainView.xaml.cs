@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XMVVM.Model;
 using XMVVM.ViewModel;
 
 namespace XMVVM.View
@@ -17,6 +18,16 @@ namespace XMVVM.View
         {
             InitializeComponent();
             BindingContext = new MainViewModel();
+            lvStudents.ItemSelected += lvStudentsItemSelected;
+
+        }
+
+        private void lvStudentsItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            Student selectedStudent = (Student)e.SelectedItem;
+            if (selectedStudent == null) return;
+            Navigation.PushAsync(new StudentDetail(selectedStudent));
+            lvStudents.SelectedItem = null;
         }
     }
 }
