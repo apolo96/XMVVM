@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using XMVVM.Model;
+using XMVVM.Storage;
 
 namespace XMVVM.Services
 {
@@ -13,8 +14,17 @@ namespace XMVVM.Services
 
        public static StudentDirectory loadStudentDirectory()
        {
+            DatabaseManager dbManager = new DatabaseManager();
+            ObservableCollection<Student> students = new ObservableCollection<Student>(dbManager.GetAllItems<Student>());
             StudentDirectory studentDirectory = new StudentDirectory();
-            ObservableCollection<Student> students = new ObservableCollection<Student>();
+
+            if (students.Any())
+            {
+                studentDirectory.Students = students;
+                return studentDirectory;
+            }
+
+            students = new ObservableCollection<Student>();
 
             string[] names = {
             "Andres Felipe",
@@ -44,8 +54,10 @@ namespace XMVVM.Services
                 student.LastName = lastName[rdn.Next(0,4)];
                 student.Group = rdn.Next(456,458).ToString();
                 student.StudentNumber = rdn.Next(12384748, 32384748).ToString();
-                student.Average = rdn.Next(100, 100) / 10;
+                student.Key = student.StudentNumber;
+                student.Average = rdn.Next(100, 1000) / 10;
                 students.Add(student);
+                dbManager.SaveValue<Student>(student);
             }
             studentDirectory.Students = students;
             return studentDirectory;

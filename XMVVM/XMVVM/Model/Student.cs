@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using XMVVM.Storage;
 
 namespace XMVVM.Model
 {
-    public class Student
+    public class Student: IKeyObject
     {
         private string name;
         private string lastName;
@@ -77,6 +78,13 @@ namespace XMVVM.Model
             {
                 average = value;
             }
+        }
+
+        [SQLite.PrimaryKey]
+        public string Key
+        {
+            get;
+            set;
         }
     }
 }
